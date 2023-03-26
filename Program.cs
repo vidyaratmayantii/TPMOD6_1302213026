@@ -4,10 +4,30 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        SayaTubeVideo video = new SayaTubeVideo("Tutorial Design By Contract – [VIDYA ANANDA R]");
-        video.IncreasePlayCount(1000000000);
-        video.IncreasePlayCount(1000000000);
-        video.printVideoDetail();
+        try {
+            //membuat objek video
+            SayaTubeVideo video = new SayaTubeVideo("Tutorial Design By Contract – [VIDYA ANANDA R]");
+            //menambahkan dan print playcoutn
+            video.IncreasePlayCount(10000);
+            video.printVideoDetail();
+            //menambahkan playcount hingga limit
+            for(int i = 0; i < 214; i++)
+            {
+                video.IncreasePlayCount(10000000);
+            }
+            video.printVideoDetail();
+            //menambahkan lagi agar overflow
+
+            video.IncreasePlayCount(10000000);
+
+
+        }
+        catch (OverflowException)
+        {
+            //akan muncul jika overflow
+            Console.WriteLine("Overflow");
+        }
+        
 
 
     }

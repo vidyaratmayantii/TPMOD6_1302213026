@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -14,6 +15,7 @@ namespace TPMOD6_1302213026
         int playCount;
 
         public SayaTubeVideo(string judul_video) {
+            Debug.Assert(judul_video != null && judul_video.Length <= 100, "Judul melebihi batas");
             Random rnd = new Random();
             id = rnd.Next();
             this.title = judul_video;
@@ -21,7 +23,8 @@ namespace TPMOD6_1302213026
         }
 
         public void IncreasePlayCount(int playCount) {
-           this.playCount += playCount;  
+            Debug.Assert(playCount <= 10000000, "Jumlah penayangan melebihi batas");
+           this.playCount = checked( this.playCount + playCount);  
              
         }
 
